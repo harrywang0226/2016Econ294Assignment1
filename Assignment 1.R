@@ -14,10 +14,14 @@ df.RData<-load(url("https://github.com/EconomiCurtis/econ294_2015/raw/master/dat
 print(df.RData) #the name assigned to RData file is NHIS_2007_RData
 
 # Question 2
-download.file("https://github.com/EconomiCurtis/econ294_2015/raw/master/data/NHIS_2007_dta.dta","/Documents/2016Winter294/Assignment1/2016Econ294Assignment1/NHIS_2007_dta.dta")
-download.file("https://github.com/EconomiCurtis/econ294_2015/raw/master/data/NHIS_2007_CSV.csv","/Documents/2016Winter294/Assignment1/2016Econ294Assignment1/NHIS_2007_csv.csv")
-download.file("https://github.com/EconomiCurtis/econ294_2015/raw/master/data/NHIS_2007_TSV.txt","/Documents/2016Winter294/Assignment1/2016Econ294Assignment1/NHIS_2007_TSV.txt")
-download.file("https://github.com/EconomiCurtis/econ294_2015/raw/master/data/NHIS_2007_RData.RData","/Documents/2016Winter294/Assignment1/2016Econ294Assignment1/NHIS_2007_RData.RData")
+download.file("https://github.com/EconomiCurtis/econ294_2015/raw/master/data/NHIS_2007_dta.dta",
+              "~/Econ/2016Winter294/Assignment1/2016Econ294Assignment1/NHIS_2007_dta.dta")
+download.file("https://github.com/EconomiCurtis/econ294_2015/raw/master/data/NHIS_2007_CSV.csv",
+              "~/Econ/2016Winter294/Assignment1/2016Econ294Assignment1/NHIS_2007_csv.csv")
+download.file("https://github.com/EconomiCurtis/econ294_2015/raw/master/data/NHIS_2007_TSV.txt",
+              "~/Econ/2016Winter294/Assignment1/2016Econ294Assignment1/NHIS_2007_TSV.txt")
+download.file("https://github.com/EconomiCurtis/econ294_2015/raw/master/data/NHIS_2007_RData.RData",
+              "~/Econ/2016Winter294/Assignment1/2016Econ294Assignment1/NHIS_2007_RData.RData")
 # dta file is 189KB, txt file is 138KB, csv file is 138KB, RData file is 45KB. The RData file is the smallest.
 
 # Question 3
@@ -65,3 +69,18 @@ cut<-c("fair","good","very good","good","fair","ideal","fair")
 clarity<-c("SI1","I1","VI1","VS1","IF","VVS2",NA)
 price<-c(850,450,450,NA,750,980,420)
 diamonds<-data.frame(carat,cut,clarity,price,check.rows=FALSE)
+m<-mean(diamonds$price,na.rm=TRUE)
+print(m)
+# The mean price is 650.
+cutset1<-subset(diamonds,cut=="fair")
+mcs1<-mean(cutset1$price)
+print(mcs1)
+# The mean price of cut "fair" is 673.333
+cutset2<-subset(diamonds,cut!="fair")
+mcs2<-mean(cutset2$price,na.rm=TRUE)
+print(mcs2)
+# The mean price of cut "good","very good",and "Ideal" is 626.6667
+cutset3<-subset(diamonds,carat>=2 & cut=="very good"|cut=="ideal")
+print(cutset3)
+# The cutset3 only has a row which the price of the diamond is 980, 
+# however the number of carat is not available, we cannot find the median price of carat greater than 2 carat.
